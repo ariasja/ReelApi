@@ -31,7 +31,7 @@ end
 group :development, :test do
   gem 'awesome_print'
   gem 'dotenv-rails'
-  gem 'factory_girl_rails'
+  gem 'factory_girl_rails', :require => false
   gem 'pry-rails'
   gem 'rspec-rails', '~> 2.14.0'
 end
