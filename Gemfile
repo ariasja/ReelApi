@@ -8,7 +8,9 @@ gem 'coffee-rails'
 gem 'delayed_job_active_record'
 gem 'email_validator'
 gem 'flutie'
+gem 'geocoder'
 gem 'high_voltage'
+gem 'jbuilder', '~> 2.1.2'
 gem 'jquery-rails'
 gem 'neat', '~> 1.5.1'
 gem 'oj'
@@ -26,6 +28,9 @@ group :development do
   gem 'foreman'
   gem 'spring'
   gem 'spring-commands-rspec'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+
 end
 
 group :development, :test do

@@ -3,8 +3,6 @@ json.cache! post do
   json.caption post.caption
   json.geo_lat post.geo_lat
   json.geo_long post.geo_long
-  json.created_at post.created_at
-  json.updated_at post.updated_at
 
   json.user do
     json.device_token post.user.device_token
