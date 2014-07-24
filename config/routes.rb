@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
+  
   scope module: :api, defaults: { format: 'json' } do
+
     namespace :v1 do
 
       namespace :posts do
@@ -7,7 +9,11 @@ Rails.application.routes.draw do
       end
 
       resources :posts, only: [:show, :create, :update]
+
+      resources :users, only: [:show]
       
     end
+  
   end
+
 end
