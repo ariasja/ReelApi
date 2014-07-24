@@ -8,9 +8,13 @@ gem 'coffee-rails'
 gem 'delayed_job_active_record'
 gem 'email_validator'
 gem 'flutie'
+gem 'geocoder'
 gem 'high_voltage'
+gem 'jbuilder', '~> 2.1.2'
 gem 'jquery-rails'
 gem 'neat', '~> 1.5.1'
+gem 'oj'
+gem 'pg'
 gem 'rack-timeout'
 gem 'rails', '4.1.1'
 gem 'recipient_interceptor'
@@ -24,12 +28,15 @@ group :development do
   gem 'foreman'
   gem 'spring'
   gem 'spring-commands-rspec'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+
 end
 
 group :development, :test do
   gem 'awesome_print'
   gem 'dotenv-rails'
-  gem 'factory_girl_rails'
+  gem 'factory_girl_rails', :require => false
   gem 'pry-rails'
   gem 'rspec-rails', '~> 2.14.0'
   gem 'sqlite3', '1.3.8'

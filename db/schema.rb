@@ -11,20 +11,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140709221830) do
+
+ActiveRecord::Schema.define(version: 20140712012307) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+
+  create_table "likes", force: true do |t|
+    t.integer "post_id", null: false
+    t.integer "user_id", null: false
+  end
+
+  add_index "likes", ["post_id"], name: "index_likes_on_post_id", using: :btree
+  add_index "likes", ["user_id"], name: "index_likes_on_user_id", using: :btree
+
   create_table "posts", force: true do |t|
-    t.integer  "user_id",    null: false
-    t.float    "geo_lat"
-    t.float    "geo_long"
-    t.string   "caption"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer "user_id",  null: false
+    t.float   "geo_lat"
+    t.float   "geo_long"
+    t.string  "caption"
   end
 
   add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
+
+
+  create_table "users", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "device_token", null: false
+    t.string   "name",         null: false
+    t.string   "email",        null: false
+    t.string   "bio"
+  end
 
 end

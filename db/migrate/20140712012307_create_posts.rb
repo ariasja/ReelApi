@@ -4,8 +4,7 @@ class CreatePosts < ActiveRecord::Migration
       t.integer :user_id, null: false
       t.float :geo_lat
       t.float :geo_long
-    	t.string :caption
-    	t.timestamps null: false
+      t.string :caption
     end
     add_index :posts, :user_id
   end
