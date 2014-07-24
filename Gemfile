@@ -11,7 +11,6 @@ gem 'flutie'
 gem 'high_voltage'
 gem 'jquery-rails'
 gem 'neat', '~> 1.5.1'
-gem 'pg'
 gem 'rack-timeout'
 gem 'rails', '4.1.1'
 gem 'recipient_interceptor'
@@ -33,6 +32,8 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'pry-rails'
   gem 'rspec-rails', '~> 2.14.0'
+  gem 'sqlite3', '1.3.8'
+
 end
 
 group :test do
@@ -48,4 +49,6 @@ end
 group :staging, :production do
   gem 'rails_12factor'
   gem 'newrelic_rpm', '>= 3.7.3'
+  gem 'pg'
+
 end
