@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
       resources :posts, only: [:show, :create, :update]
 
-      resources :users, only: [:show]
+      resources :users, only: [:show, :create]
       
     end
   
