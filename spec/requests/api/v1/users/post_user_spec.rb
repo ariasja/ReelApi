@@ -1,23 +1,5 @@
 require 'spec_helper'
 
-describe 'GET v1/users/:id' do
-  it 'returns a user by :id' do
-    
-    user = create(:user)
-    get "/v1/users/#{user.id}"
-
-    expect(response_json).to eq(
-      {
-        'id' => user.id,
-        'name' => user.name,
-        'email' => user.email,
-        'bio' => user.bio,
-        'device_token' => user.device_token
-      }
-    )
-  end
-end
-
 describe 'POST v1/users' do
 
   it 'saves id, name, email, bio, and a device_token' do
@@ -44,7 +26,7 @@ describe 'POST v1/users' do
         'message' => 'Validation Failed',
         'errors' => [
           "Name can't be blank",
-          "Email can't be blank"
+          "Email is invalid"
         ]
       })
     expect(response.code.to_i).to eq 422
