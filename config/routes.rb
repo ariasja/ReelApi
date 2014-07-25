@@ -7,8 +7,9 @@ Rails.application.routes.draw do
       namespace :posts do
         resources :nearests, only: [:index]
       end
-
-      resources :posts, only: [:show, :create, :update]
+      resources :posts, only: [:show, :create, :update] do
+        resources :likes, only: [:index]
+      end
 
       resources :users, only: [:show, :create, :update]
       

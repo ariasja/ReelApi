@@ -40,4 +40,9 @@ FactoryGirl.define do
     bio
     device_token { generate(:token) }
   end
+
+  factory :like do
+    post
+    user
+  end
 end
