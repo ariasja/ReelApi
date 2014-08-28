@@ -8,14 +8,14 @@ describe 'POST v1/users' do
       device_token: '123abc4556def',
       name: "Captain Jack Sparrow",
       bio: "Where's all the rum gone?",
-      email: "jasck_sparrow@disney.com"
+      email: "jasck_sparrow@pirates.com"
     }.to_json, { 'Content-Type' => 'application/json' }
 
     user = User.last
     expect(response_json).to eq({ 'id' => user.id })
     expect(user.device_token).to eq '123abc4556def'
     expect(user.name).to eq "Captain Jack Sparrow"
-    expect(user.email).to eq "jasck_sparrow@disney.com"
+    expect(user.email).to eq "jasck_sparrow@pirates.com"
     expect(user.bio).to eq "Where's all the rum gone?"
   end
 
