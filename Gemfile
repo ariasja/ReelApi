@@ -21,7 +21,6 @@ gem 'sass-rails', '~> 4.0.3'
 gem 'simple_form'
 gem 'title'
 gem 'uglifier'
-gem 'unicorn'
 
 group :development do
   gem 'foreman'
