@@ -7,8 +7,11 @@ describe 'POST v1/users' do
     post 'v1/users', {
       device_token: '123abc4556def',
       name: "Captain Jack Sparrow",
+      username: "cjs",
       bio: "Where's all the rum gone?",
-      email: "jasck_sparrow@pirates.com"
+      email: "jasck_sparrow@pirates.com",
+      password: "foobar",
+      password_confirmation: "foobar"
     }.to_json, { 'Content-Type' => 'application/json' }
 
     user = User.last
@@ -26,7 +29,10 @@ describe 'POST v1/users' do
         'message' => 'Validation Failed',
         'errors' => [
           "Name can't be blank",
-          "Email is invalid"
+          "Email can't be blank", 
+          "Email is invalid", 
+          "Password can't be blank", 
+          "Password is too short (minimum is 6 characters)"        
         ]
       })
     expect(response.code.to_i).to eq 422

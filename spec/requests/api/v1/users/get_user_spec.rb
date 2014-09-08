@@ -10,6 +10,7 @@ describe 'GET v1/users/:id' do
       {
         'id' => user.id,
         'name' => user.name,
+        'username' => user.username,
         'email' => user.email,
         'bio' => user.bio,
         'device_token' => user.device_token

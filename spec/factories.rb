@@ -19,6 +19,14 @@ FactoryGirl.define do
     "Bio: #{n}"
   end
 
+  sequence :password do |n|
+    "password"
+  end
+
+  sequence :password_confirmation do |n|
+    "password"
+  end
+
   sequence :caption do |n|
     "Caption: #{n}"
   end
@@ -39,6 +47,8 @@ FactoryGirl.define do
     email
     bio
     device_token { generate(:token) }
+    password
+    password_confirmation
   end
 
   factory :like do

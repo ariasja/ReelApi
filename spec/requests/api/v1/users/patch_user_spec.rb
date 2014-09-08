@@ -8,7 +8,9 @@ describe 'PATCH /v1/users/:id' do
       device_token: "a1b2c3d4",
       name: "Spiderman",
       bio: "dOeS wHaTeVeR a SpIdEr CaN",
-      email: "spidy@marvel.com"
+      email: "spidy@marvel.com",
+      password: "foobar",
+      password_confirmation: "foobar"
     )
 
     new_name = "Peter Parker"
@@ -18,16 +20,23 @@ describe 'PATCH /v1/users/:id' do
     patch "/v1/users/#{user.id}", {
       device_token: user.device_token,
       name: new_name,
+      username: user.username,
       bio: new_bio,
       email: new_email,
+      password: "foobar2",
+      password_confirmation: "foobar2"
     }.to_json, { 'Content-Type' => 'application/json' }
     
     user.reload
     expect(user.name).to eq new_name
     expect(user.bio).to eq new_bio
     expect(user.email).to eq new_email
-    expect(response_json).to eq({ 'id' => user.id })
-
+    expect(response_json).to eq({ 'message' => 'User Updated Successfully',
+                                  'id' => user.id,
+                                  'name' => user.name,
+                                  'username' => user.username,
+                                  'email' =>user.email,
+                                  'bio' => user.bio })
   end
 
   it 'returns an error message when name is blank' do
@@ -36,7 +45,9 @@ describe 'PATCH /v1/users/:id' do
       device_token: user.device_token,
       name: nil,
       email: user.email,
-      bio: user.bio
+      bio: user.bio,
+      password: user.password,
+      password_confirmation: user.password_confirmation
     }.to_json, { 'Content-Type' => 'application/json' }
 
     user.reload
@@ -59,7 +70,9 @@ describe 'PATCH /v1/users/:id' do
       device_token: user.device_token,
       name: "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz",
       email: user.email,
-      bio: user.bio
+      bio: user.bio,
+      password: user.password,
+      password_confirmation: user.password_confirmation
     }.to_json, { 'Content-Type' => 'application/json' }
 
     user.reload
@@ -82,7 +95,9 @@ describe 'PATCH /v1/users/:id' do
       device_token: user.device_token,
       name: user.name,
       email: nil,
-      bio: user.bio
+      bio: user.bio,
+      password: user.password,
+      password_confirmation: user.password_confirmation
     }.to_json, { 'Content-Type' => 'application/json' }
 
     user.reload
@@ -91,6 +106,7 @@ describe 'PATCH /v1/users/:id' do
     expect(response_json).to eq({
     'message' => 'Validation Failed',
     'errors' => [
+      "Email can't be blank",
       "Email is invalid"
     ]
   })
@@ -105,7 +121,9 @@ describe 'PATCH /v1/users/:id' do
       device_token: user.device_token,
       name: user.name,
       email: "ajs;fihjea;lkdfna;sldkjf",
-      bio: user.bio
+      bio: user.bio,
+      password: user.password,
+      password_confirmation: user.password_confirmation
     }.to_json, { 'Content-Type' => 'application/json' }
 
     user.reload
@@ -114,7 +132,7 @@ describe 'PATCH /v1/users/:id' do
     expect(response_json).to eq({
     'message' => 'Validation Failed',
     'errors' => [
-      "Email is invalid"
+      "Email is invalid", 
     ]
   })
 

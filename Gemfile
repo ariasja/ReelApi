@@ -4,6 +4,7 @@ ruby '2.1.2'
 
 gem 'airbrake'
 gem 'bourbon', '~> 3.2.1'
+gem 'bcrypt-ruby', '3.1.2'
 gem 'coffee-rails'
 gem 'delayed_job_active_record'
 gem 'email_validator'
