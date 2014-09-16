@@ -15,13 +15,13 @@ describe 'PATCH /v1/posts/:id' do
       caption: "Old caption"
     )
 
-    new_caption = 'New name'
+    new_caption = 'New Caption'
 
     patch "/v1/posts/#{post.id}", {
       caption: new_caption,
       geo_long: post.geo_long,
       geo_lat: post.geo_lat,
-      user: post.user,
+      user_id: post.user_id,
     }.to_json, { 'Content-Type' => 'application/json' }
     
     post.reload

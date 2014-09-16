@@ -15,12 +15,7 @@ describe 'POST v1/posts' do
       geo_long: 2.5,
       geo_lat: 2.5,
       caption: "POST post",
-      user: {
-        device_token: device_token,
-        name: "Misty Gish",
-        bio: "Girls being girls being girls being girls",
-        email: "misty_gish@cutiepatooties.com"
-      }
+      user_id: user.id
     }.to_json, { 'Content-Type' => 'application/json' }
 
     post = Post.last
@@ -28,7 +23,7 @@ describe 'POST v1/posts' do
     expect(post.geo_lat).to eq 2.5
     expect(post.geo_long).to eq 2.5
     expect(post.caption).to eq "POST post"
-    expect(post.user).to eq user
+    expect(post.user_id).to eq user.id
   end
 
   it 'returns an error message when invalid' do

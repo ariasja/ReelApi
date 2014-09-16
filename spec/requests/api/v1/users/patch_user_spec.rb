@@ -31,8 +31,7 @@ describe 'PATCH /v1/users/:id' do
     expect(user.name).to eq new_name
     expect(user.bio).to eq new_bio
     expect(user.email).to eq new_email
-    expect(response_json).to eq({ 'message' => 'User Updated Successfully',
-                                  'id' => user.id,
+    expect(response_json).to eq({ 'id' => user.id,
                                   'name' => user.name,
                                   'username' => user.username,
                                   'email' =>user.email,

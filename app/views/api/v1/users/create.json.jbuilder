@@ -1,1 +1,1 @@
-json.id @user.id
+json.partial! 'user', user: @user

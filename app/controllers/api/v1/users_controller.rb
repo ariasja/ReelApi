@@ -12,7 +12,11 @@ class Api::V1::UsersController < ApiController
     @user = User.new(user_params)
     if @user.save
       render json: {
-        id: @user.id
+        id: @user.id,
+        name: @user.name,
+        username: @user.username,
+        email: @user.email,
+        bio: @user.bio
       }, status: 200
     else
       render json: {
@@ -24,9 +28,12 @@ class Api::V1::UsersController < ApiController
 
   def update
     @user = User.find(params[:id])
-    if @user.update_attributes(user_params)
+    if @user.update_attributes(user_patch_params)
+      @user.name = params[:name]
+      @user.username= params[:username]
+      @user.email = params[:email]
+      @user.bio = params[:bio]
       render json: {
-        message: 'User Updated Successfully',
         id: @user.id,
         name: @user.name,
         username: @user.username,
@@ -53,6 +60,15 @@ class Api::V1::UsersController < ApiController
         bio: params[:bio], 
         password: params[:password],
         password_confirmation: params[:password_confirmation]
+      }
+    end
+
+    def user_patch_params
+      {
+        name: params[:name],
+        username: params[:username],
+        email: params[:email],
+        bio: params[:bio]
       }
     end
     

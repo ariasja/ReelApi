@@ -12,12 +12,8 @@ describe 'GET v1/posts/:id' do
         'caption' => post.caption,
         'geo_lat' => post.geo_lat,
         'geo_long' => post.geo_long,
-        'user' => {
-          'device_token' => post.user.device_token,
-          'name' => post.user.name,
-          'email' => post.user.email,
-          'bio' => post.user.bio
-        }
+        'user_id' => post.user_id,
+        'folder_id' => post.folder_id
       }
     )
   end

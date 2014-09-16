@@ -15,7 +15,12 @@ describe 'POST v1/users' do
     }.to_json, { 'Content-Type' => 'application/json' }
 
     user = User.last
-    expect(response_json).to eq({ 'id' => user.id })
+    expect(response_json).to eq({ 
+    'id' => user.id,
+    'name' => user.name,
+    'username' => user.username,
+    'email' => user.email,
+    'bio' => user.bio })
     expect(user.device_token).to eq '123abc4556def'
     expect(user.name).to eq "Captain Jack Sparrow"
     expect(user.email).to eq "jasck_sparrow@pirates.com"

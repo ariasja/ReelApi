@@ -4,6 +4,10 @@ class Api::V1::PostsController < ApiController
     @post = Post.find(params[:id])
   end
 
+  def index
+    @posts = Post.where("user_id = ?", params[:user_id])
+  end
+
   def create
     @post = Post.new(post_params)
     if @post.save
@@ -35,7 +39,7 @@ private
       geo_lat: params[:geo_lat],
       geo_long: params[:geo_long],
       caption: params[:caption],
-      user: user
+      user_id: params[:user_id]
     }
   end
 

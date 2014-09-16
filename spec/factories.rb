@@ -11,6 +11,10 @@ FactoryGirl.define do
     "name #{n}"
   end
 
+  sequence :username do |n|
+    "username #{n}"
+  end
+
   sequence :email do |n|
     "#{n}@example.com"
   end
@@ -44,6 +48,7 @@ FactoryGirl.define do
 
   factory :user do
     name
+    username
     email
     bio
     device_token { generate(:token) }
