@@ -15,9 +15,13 @@ Rails.application.routes.draw do
 
       resources :users, only: [:show, :create, :update, :index] do
         resources :posts, only: [:index]
+        resources :folders, only: [:index]
       end
 
-      resources :folders, only: [:create, :update, :index, :destroy]
+      resources :folders, only: [:create, :update, :index, :destroy] do
+        get 'posts', to: 'posts#indexByFolderId'
+      end
+
       resources :sessions, only: [:create, :destroy]
     end
   

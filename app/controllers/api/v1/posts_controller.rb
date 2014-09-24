@@ -5,7 +5,11 @@ class Api::V1::PostsController < ApiController
   end
 
   def index
-    @posts = Post.where("user_id = ?", params[:user_id])
+    @posts = Post.where("user_id = ?", params[:user_id]).reverse_order
+  end
+
+  def indexByFolderId
+    @posts = Post.where("folder_id = ?", params[:folder_id]).reverse_order
   end
 
   def create
@@ -39,7 +43,8 @@ private
       geo_lat: params[:geo_lat],
       geo_long: params[:geo_long],
       caption: params[:caption],
-      user_id: params[:user_id]
+      user_id: params[:user_id],
+      folder_id: params[:folder_id]
     }
   end
 
