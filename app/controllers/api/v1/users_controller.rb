@@ -48,6 +48,16 @@ class Api::V1::UsersController < ApiController
     end
   end
 
+  def following
+    @user = User.find(params[:id])
+    @users = @user.followed_users
+  end
+
+  def followers
+    @user = User.find(params[:id])
+    @users = @user.followers
+  end
+
   private
     
     def user_params
