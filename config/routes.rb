@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  resources :videos
+
   resources :folders
 
   scope module: :api, defaults: { format: 'json' } do
@@ -16,9 +18,9 @@ Rails.application.routes.draw do
 
       resources :users, only: [:show, :create, :update, :index] do
         resources :posts, only: [:index]
-        resources :folders, only: [:index]
+        resources :folders, only: [:index]        
         member do
-          get :following, :followers
+          get :following, :followers, :feed_posts
         end
       end
 

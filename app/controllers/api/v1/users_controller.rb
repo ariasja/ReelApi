@@ -58,6 +58,11 @@ class Api::V1::UsersController < ApiController
     @users = @user.followers
   end
 
+  def feed_posts
+    @user = User.find(params[:id])
+    @posts = @user.feed.reverse_order
+  end
+
   private
     
     def user_params
