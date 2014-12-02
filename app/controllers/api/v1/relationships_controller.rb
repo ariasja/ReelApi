@@ -8,7 +8,7 @@ class Api::V1::RelationshipsController < ApiController
       follower_id: :follower_id,
       followed_id: :followed_id,
       message: 'Relationship Created'
-      }, status: 200
+    }, status: 200
   end
 
   def destroy

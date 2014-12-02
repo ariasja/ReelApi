@@ -11,10 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141012225120) do
+ActiveRecord::Schema.define(version: 20141123214640) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "attags", force: true do |t|
+    t.integer "post_id"
+    t.integer "tagged_user_id"
+    t.integer "tagging_user_id"
+  end
+
+  add_index "attags", ["post_id"], name: "index_attags_on_post_id", using: :btree
+  add_index "attags", ["tagged_user_id"], name: "index_attags_on_tagged_user_id", using: :btree
+  add_index "attags", ["tagging_user_id"], name: "index_attags_on_tagging_user_id", using: :btree
 
   create_table "folders", force: true do |t|
     t.string   "title"
@@ -24,7 +34,9 @@ ActiveRecord::Schema.define(version: 20141012225120) do
   end
 
   create_table "hashtags", force: true do |t|
-    t.string "tag"
+    t.string  "tag"
+    t.integer "post_id"
+    t.integer "tagging_user_id"
   end
 
   add_index "hashtags", ["tag"], name: "index_hashtags_on_tag", using: :btree
@@ -59,6 +71,10 @@ ActiveRecord::Schema.define(version: 20141012225120) do
   add_index "relationships", ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true, using: :btree
   add_index "relationships", ["follower_id"], name: "index_relationships_on_follower_id", using: :btree
 
+  create_table "thumbnails", force: true do |t|
+    t.integer "video_id"
+  end
+
   create_table "users", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -71,11 +87,17 @@ ActiveRecord::Schema.define(version: 20141012225120) do
     t.string   "remember_token"
   end
 
+  add_index "users", ["email"], name: "index_users_on_email", using: :btree
   add_index "users", ["remember_token"], name: "index_users_on_remember_token", using: :btree
 
   create_table "videos", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string   "video_file_name"
+    t.string   "video_content_type"
+    t.integer  "video_file_size"
+    t.datetime "video_updated_at"
+    t.integer  "post_id"
   end
+
+  add_index "videos", ["post_id"], name: "index_videos_on_post_id", using: :btree
 
 end

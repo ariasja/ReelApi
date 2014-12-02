@@ -2,6 +2,11 @@ class Api::V1::SessionsController < ApiController
 
   def create
     user = User.find_by(email: params[:email].downcase)
+    puts '**'
+    puts user
+    puts params[:email]
+    puts '**'
+
     if user && user.authenticate(params[:password])
       sign_in(user)
       render json:{ 

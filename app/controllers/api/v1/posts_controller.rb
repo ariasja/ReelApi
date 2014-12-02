@@ -8,10 +8,29 @@ class Api::V1::PostsController < ApiController
     @posts = Post.where("user_id = ?", params[:user_id]).reverse_order
   end
 
-  def indexByFolderId
-    @posts = Post.where("folder_id = ?", params[:folder_id]).reverse_order
+  def hashtags_index_by_tag 
+    @hashtags = Hashtag.where("tag = ?", params[:tag]).reverse_order
+    @posts = []
+    for hashtag in @hashtags do
+      @posts += Post.where("id = ?", hashtag[:post_id])
+    end
+  end
+    
+  def hashtags_index_by_tag_and_by_user
+    @hashtags = Hashtag.where("tag = ? AND tagging_user_id = ?", params[:tag], params[:user_id]).reverse_order
+    @posts = []
+    for hashtag in @hashtags do
+      @posts += Post.where("id = ?", hashtag[:post_id])
+    end
   end
 
+  def attags_index_by_tagging_user
+  end
+
+  def attags_index_by_tagged_user
+  
+  end
+      
   def create
     @post = Post.new(post_params)
     if @post.save

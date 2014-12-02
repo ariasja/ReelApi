@@ -1,0 +1,1 @@
+json.partial! 'hashtag', collection: @hashtags, as: :hashtag
